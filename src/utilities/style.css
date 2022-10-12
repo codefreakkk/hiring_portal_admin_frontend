@@ -1,0 +1,30 @@
+.main_logo {
+   padding-top: 20px;
+   padding-left: 50px;
+}
+
+.navbar-header {
+    background-color: #2a3042;
+    color: white;
+}
+
+#search {
+    background-color: #2a3042 ;
+}
+
+.dark_bg {
+    
+    background-color: #2a3042 ;
+}
+.color_white {
+    color: white;
+}
+
+.main_nav {
+    padding: 0 8%;
+}
+
+.show_user {
+    display: block;
+    /* visibility: visible; */
+}
