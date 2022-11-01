@@ -28,3 +28,241 @@
     display: block;
     /* visibility: visible; */
 }
+
+.home_cont {
+    /* background-color: red; */
+    padding: 30px 5%;
+}
+
+.loader {
+    /* background-color: rgb(157, 0, 255); */
+    background-color: #556ee6;
+    height: 4px;
+    width: 0%;
+}
+
+.color_blue {
+    color: #556ee6;
+}
+
+.openloader {
+    /* background-color:#556de6d9; */
+    background-color:#556de6cd;
+    height: 3px;
+    transition: width .3s ease-in-out;
+    width: 100%;
+}
+
+.activity_main {
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    height: 80vh;
+    border: 0px;
+    padding: 30px 0;
+    overflow-y: scroll;
+}
+
+.jobdetails_main {
+    width: 100%;
+    padding: 30px 5%;
+}
+
+.hiringdetails_main {
+    margin-top: 30px;
+    padding: 0px 75px;
+}
+
+.joblists_main {
+    padding: 30px 5%;
+}
+
+.mr-6 {
+    margin-right: 6px;
+}
+
+.postjob_main {
+    padding: 30px 5%;
+}
+
+.respBtn {
+    font-size: 12px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.remove {
+    font-size: 12px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  
+}
+
+.del_cont {
+    display: flex;
+    justify-content:flex-end;
+}
+
+.file_container {
+    font-size: 10px;
+    background-color: rgba(226, 226, 226, 0.4);
+    width: 35vh;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    padding-left: 15px;
+    font-weight: bold;
+    height: 40px;
+    justify-content: space-between;
+}
+
+
+.upload_cont_inner {
+    padding: 10px 10px;
+    border: 1px dashed rgb(183, 179, 179);
+}
+
+.close {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.jobcat_main {
+    padding: 30px 5%;
+}
+
+
+.cat_cont {
+    height: 30vh;
+    width: 700px;
+    overflow-y: scroll;
+    padding: 5px;
+    background-color: transparent;
+}
+
+.cat_cont::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgb(224, 224, 224);
+}
+
+.cat_ {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.assigntask_main {
+    padding: 30px 5%;
+}
+
+.view_main {
+    padding: 30px 5%;   
+}
+
+.user_profile {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    /* border-radius: 50%; */
+    /* background-color: rgb(228, 221, 221); */
+    height: 15vh;
+    width: 15vh;
+}
+
+.viewtask_main {
+    padding: 30px 5%    ;
+}
+
+.interviews_main {
+    padding: 30px 5%;
+}
+
+.scheduleinterview_main {
+    padding: 10px 30%;
+}
+
+.chat_panel {
+    height: 55vh;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.chats_main {
+    padding: 35px 5% 0 5%;;
+}
+
+.viewprofile_main {
+    padding: 35px 5%;
+}
+
+.chat_sidebar {
+    background-color: white;
+    padding: 0 20px;
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+.chat_left_section {
+    padding: 12px;
+    cursor: pointer;
+    border-bottom: .1px solid rgb(237, 235, 235);
+    /* background-color: red; */
+}
+
+.inbox_main {
+    padding: 30px 5%;
+}
+
+.inbox_active {
+   background-color: red;
+}
+
+.inbox_search {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.inbox_input_search {
+    width: 90%;
+}
+
+.readmail_main {
+    padding: 30px 5%;
+}
+
+.toggle_main {
+    display: flex;
+    margin-top: 10px;
+    /* background-color: red; */
+    padding: 0px 20px 0 16px;
+    justify-content: space-between;
+}
+
+.staff_main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.staff_logo {
+    height: 130px;
+    opacity: .3;
+}
+
+.staff_title {
+    margin-top: 18px;
+    font-size: 18px;
+    color: black;
+}

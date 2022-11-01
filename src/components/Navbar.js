@@ -6,15 +6,16 @@ import "../utilities/style.css";
 import logo from "../images/app.png";
 import { useState } from "react";
 import Panel from "./Panel";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
-    const [user, setUser] = useState(false);
-    function toggleUser() {
-        setUser(!user);
-  };
+  const [user, setUser] = useState(false);
+  function toggleUser() {
+    setUser(!user);
+  }
 
   return (
-    <div id="layout-wrapper">
+    <div>
       <header id="page-topbar">
         <div class="navbar-header">
           <div class="d-flex">
@@ -127,21 +128,23 @@ function Navbar() {
                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
               </button>
 
-              <div class="dropdown-menu dropdown-menu-end" style={user ? {display: 'block'} : {display : 'none'}}>
+              <div
+                class="dropdown-menu dropdown-menu-end"
+                style={user ? { display: "block" } : { display: "none" }}
+              >
                 {/* <!-- item--> */}
-                <a class="dropdown-item" href="#">
-                  <i class="bx bx-user font-size-16 align-middle me-1"></i>{" "}
-                  <span key="t-profile">Profile</span>
-                </a>
-                {/* <a class="dropdown-item" href="#">
-                  <i class="bx bx-wallet font-size-16 align-middle me-1"></i>{" "}
-                  <span key="t-my-wallet">My Wallet</span>
-                </a>
-                <a class="dropdown-item d-block" href="#">
-                  <span class="badge bg-success float-end">11</span>
-                  <i class="bx bx-wrench font-size-16 align-middle me-1"></i>{" "}
-                  <span key="t-settings">Settings</span>
-                </a> */}
+                <NavLink to="viewprofile">
+                  <a class="dropdown-item" href="#">
+                    <i class="bx bx-user font-size-16 align-middle me-1"></i>{" "}
+                    <span key="t-profile">Profile</span>
+                  </a>
+                </NavLink>
+                <NavLink to="portalsettings">
+                  <a class="dropdown-item d-block">
+                    <i class="bx bx-wrench font-size-16 align-middle me-1"></i>{" "}
+                    <span key="t-settings">Settings</span>
+                  </a>
+                </NavLink>
                 <a class="dropdown-item" href="#">
                   <i class="bx bx-lock-open font-size-16 align-middle me-1"></i>{" "}
                   <span key="t-lock-screen">Lock screen</span>
@@ -160,7 +163,6 @@ function Navbar() {
       </header>
 
       {/* panel */}
-
       <Panel />
     </div>
   );
