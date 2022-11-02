@@ -266,3 +266,10 @@
     font-size: 18px;
     color: black;
 }
+
+.userheader {
+    background-color: white;
+    position: fixed;
+    z-index: 100;
+    transition: .5s;
+}

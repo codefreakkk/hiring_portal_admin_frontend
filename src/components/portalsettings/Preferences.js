@@ -12,9 +12,9 @@ function Preferences() {
           <div className="toggle_main">
             <div style={{ fontSize: "14px" }}>Send email after assigning task</div>
             <div>
-              <input type="checkbox" id="switch6" switch="primary" />
+              <input type="checkbox" id="switch5" switch="primary" />
               <label
-                for="switch6"
+                for="switch5"
                 data-on-label="Yes"
                 data-off-label="No"
               ></label>
@@ -42,9 +42,9 @@ function Preferences() {
           <div className="toggle_main">
             <div style={{ fontSize: "14px" }}>Send email after Hiring Candidate</div>
             <div>
-              <input type="checkbox" id="switch6" switch="primary" />
+              <input type="checkbox" id="switch7" switch="primary" />
               <label
-                for="switch6"
+                for="switch7"
                 data-on-label="Yes"
                 data-off-label="No"
               ></label>
@@ -57,9 +57,9 @@ function Preferences() {
           <div className="toggle_main">
             <div style={{ fontSize: "14px" }}>Send email after Rejecting Candidate</div>
             <div>
-              <input type="checkbox" id="switch6" switch="primary" />
+              <input type="checkbox" id="switch8" switch="primary" />
               <label
-                for="switch6"
+                for="switch8"
                 data-on-label="Yes"
                 data-off-label="No"
               ></label>
