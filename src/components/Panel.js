@@ -28,7 +28,7 @@ function Panel() {
                   </span>
                   <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
                     {/* dashboard */}
-                    <NavLink to="/dashboard">
+                    <NavLink to="/">
                       <span class="dropdown-item" key="t-default">
                         Home
                       </span>
@@ -39,7 +39,7 @@ function Panel() {
                       </span>
                     </NavLink> */}
 
-                    <NavLink to="/dashboard/hiringdetails">
+                    <NavLink to="/hiringdetails">
                       <span class="dropdown-item" key="t-default">
                         Hiring Details
                       </span>
@@ -67,13 +67,13 @@ function Panel() {
                       <div class="col-lg-4">
                         <div>
                           {/* Job */}
-                          <NavLink to="/dashboard/joblists">
+                          <NavLink to="/joblists">
                             <span class="dropdown-item" key="t-default">
                               Job List
                             </span>
                           </NavLink>
 
-                          <NavLink to="/dashboard/postjob">
+                          <NavLink to="/postjob">
                             <span class="dropdown-item" key="t-default">
                               Post Job
                             </span>
@@ -85,13 +85,13 @@ function Panel() {
                             </span>
                           </NavLink> */}
 
-                          <NavLink to="/dashboard/jobcategories">
+                          <NavLink to="/jobcategories">
                             <span class="dropdown-item" key="t-default">
                               Job Categories
                             </span>
                           </NavLink>
 
-                          <NavLink to="/dashboard/closedjobs">
+                          <NavLink to="/closedjobs">
                             <span class="dropdown-item" key="t-default">
                               Closed Jobs
                             </span>
@@ -105,8 +105,7 @@ function Panel() {
                 {/* section 3 */}
                 <li
                   class="nav-item dropdown"
-                  style={{ marginRight: "20px" }}
-                  style={{ cursor: "pointer" }}
+                  style={{ marginRight: "20px", cursor: 'pointer' }}
                 >
                   <a
                     class="nav-link dropdown-toggle arrow-none"
@@ -120,19 +119,19 @@ function Panel() {
                   </a>
                   <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
                     {/* candidate */}
-                    <NavLink to="/dashboard/jobapplicants">
+                    <NavLink to="/jobapplicants">
                       <span class="dropdown-item" key="t-default">
                         Job Applicants
                       </span>
                     </NavLink>
 
-                    <NavLink to="/dashboard/applicantstatus">
+                    <NavLink to="/applicantstatus">
                       <span class="dropdown-item" key="t-default">
                         Applicants Status
                       </span>
                     </NavLink>
 
-                    <NavLink to="/dashboard/interviews">
+                    <NavLink to="/interviews">
                       <span class="dropdown-item" key="t-default">
                         Interviews
                       </span>
@@ -144,13 +143,13 @@ function Panel() {
                       </span>
                     </NavLink> */}
 
-                    <NavLink to="/dashboard/inbox">
+                    <NavLink to="/inbox">
                       <span class="dropdown-item" key="t-default">
                         Inbox
                       </span>
                     </NavLink>
 
-                    <NavLink to="/dashboard/hiredcandidates">
+                    <NavLink to="/hiredcandidates">
                       <span class="dropdown-item" key="t-default">
                         Hired Candidates
                       </span>
@@ -171,13 +170,13 @@ function Panel() {
                     <div class="arrow-down"></div>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                    <NavLink to="/dashboard/viewprofile">
+                    <NavLink to="/viewprofile">
 
                     <span class="dropdown-item" key="t-default">
                       View Profile
                     </span>
                     </NavLink>
-                    <NavLink to="/dashboard/portalsettings">
+                    <NavLink to="/portalsettings">
                     <span class="dropdown-item" key="t-default">
                       Portal Settings
                     </span>
