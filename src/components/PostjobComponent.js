@@ -66,6 +66,8 @@ function PostjobComponent() {
                     </div>
                   </div>
 
+
+                                  {/*  make job type as select while doing backend*/}
                   <div class="row mb-4">
                     <label for="projectname" class="col-form-label col-lg-2">
                       Job Type

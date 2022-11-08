@@ -30,6 +30,7 @@ import Hiredcandidatesinterview from "./components/inbox/Hiredcandidatesintervie
 import ViewProfile from "./components/ViewProfile";
 import Portalsettings from "./components/portalsettings/Portalsettings";
 import Lockscreen from "./components/Lockscreen";
+import Login from "./components/Login";
 
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
     <>
       {/* router */}
       <BrowserRouter>
-      
+      {/* <Login/> */}
       <Navbar />
         <Routes>
           <Route path="/hiredcandidates" element={<Hiredcandidates />} />
