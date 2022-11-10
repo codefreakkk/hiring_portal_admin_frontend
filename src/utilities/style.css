@@ -273,3 +273,11 @@
     z-index: 100;
     transition: .5s;
 }
+
+.viewporfile_inner {
+    /* background-color: red; */
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
