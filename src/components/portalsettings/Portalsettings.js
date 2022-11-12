@@ -22,7 +22,7 @@ function PortalSettings() {
           <div class="col-12">
             <div class="email-leftbar card">
               <div class="mail-list">
-                <NavLink to="/dashboard/portalsettings">
+                <NavLink to="/portalsettings">
                   <a
                     style={{
                       marginTop: "-10px",
@@ -36,7 +36,7 @@ function PortalSettings() {
                   </a>
                 </NavLink>
 
-                <NavLink to="/dashboard/portalsettings/preferences">
+                <NavLink to="/portalsettings/preferences">
                   <a
                     href=""
                     style={{
@@ -50,7 +50,7 @@ function PortalSettings() {
                   </a>
                 </NavLink>
 
-                <NavLink to="/dashboard/portalsettings/manageaccounts">
+                <NavLink to="/portalsettings/manageaccounts">
                   <a
                     style={{
                       marginTop: "-6px",
@@ -63,7 +63,7 @@ function PortalSettings() {
                   </a>
                 </NavLink>
 
-                <NavLink to="/dashboard/portalsettings/hiring">
+                <NavLink to="/portalsettings/hiring">
                   <a style={{ marginTop: "-10px" }} href="">
                     <i class="mdi mdi-trash-can-outline me-2"></i>
                     <span style={{fontSize: '14px', fontWeight: '500px'}}>Hiring</span>

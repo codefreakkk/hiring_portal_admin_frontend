@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import "../utilities/style.css"
 
-function Keywords() {
-    const [formValues, setFormValues] = useState([{ name: "" }]);
+function Keywords({formValues, setFormValues}) {
+    
 
     let handleChange = (i, e) => {
       let newFormValues = [...formValues];
@@ -18,11 +18,6 @@ function Keywords() {
       let newFormValues = [...formValues];
       newFormValues.splice(i, 1);
       setFormValues(newFormValues);
-    };
-  
-    let handleSubmit = (event) => {
-      event.preventDefault();
-      alert(JSON.stringify(formValues));
     };
 
   return (
@@ -54,7 +49,7 @@ function Keywords() {
               >
                 Add
               </button>
-              {/* <button className="button submit" type="submit">Submit</button> */}
+              {/* <button className="button submit" onClick={handleSubmit} type="submit">Submit</button> */}
             </div>
 
             {index ? (

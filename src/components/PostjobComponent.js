@@ -4,26 +4,52 @@ import MainHeading from "./MainHeading";
 import Requirements from "./Requirements";
 import Responsibilities from "./Responsibilities";
 import SubHeading from "./SubHeading";
-import {useState} from "react"
-import uploadimg from '../images/upload.png';
+import { useState } from "react";
+import uploadimg from "../images/upload.png";
 import Qualification from "./Qualification";
 import Experience from "./Experience";
 import Keywords from "./Keywords";
+import axios from "axios";
 
 function PostjobComponent() {
+  const [formValues, setFormValues] = useState([{ name: "" }]);
+
+
+  // file uploading 
   const [file, setFile] = useState(false);
   const [selectedFile, setSelectedFile] = useState();
 
   function toggleChange(event) {
-      event.preventDefault();
-      setSelectedFile(event.target.files[0]);
-      setFile(true);
+    event.preventDefault();
+    setSelectedFile(event.target.files[0]);
+    setFile(true);
   }
 
   function close() {
-      setSelectedFile(null);
-      setFile(false);
+    setSelectedFile(null);
+    setFile(false);
   }
+
+  // handle submit
+  let handleSubmit = (event) => {
+    event.preventDefault();
+    const keywords = formValues;
+    const formData = new FormData();
+    formData.append("image", selectedFile)
+    axios({
+      method: "POST",
+      url: "http://localhost:8000/api/postjob",
+      headers: {"Content-Type": "multipart/form-data"},
+      data: {
+        keywords: keywords,
+        image: selectedFile,
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => console.log(err));
+  };
 
   return (
     <>
@@ -66,8 +92,7 @@ function PostjobComponent() {
                     </div>
                   </div>
 
-
-                                  {/*  make job type as select while doing backend*/}
+                  {/*  make job type as select while doing backend*/}
                   <div class="row mb-4">
                     <label for="projectname" class="col-form-label col-lg-2">
                       Job Type
@@ -207,46 +232,43 @@ function PostjobComponent() {
                 <Requirements />
                 {/* Requirements end */}
 
-
                 {/* Qualification */}
                 <SubHeading heading={"Qualification"} />
-                <Qualification/>
+                <Qualification />
 
                 {/* Experience */}
                 <SubHeading heading={"Skills & Experience"} />
-                <Experience/>
+                <Experience />
 
                 {/* Keywords */}
                 <SubHeading heading={"Keywords"} />
-                <Keywords/>
-
+                <Keywords formValues={formValues} setFormValues={setFormValues} />
 
                 {/* file upload */}
-                <SubHeading heading={"Images"}/>
+                <SubHeading heading={"Images"} />
                 <div class="row mb-4 ">
                   <label class="col-form-label col-lg-2">Upload Image</label>
                   <div class="col-lg-10">
-                   
-                      <div className="upload_cont_inner">
-                        <label htmlFor="inputTag" style={{ cursor: "pointer" }}>
-                          <img
-                            src={uploadimg}
-                            height="70"
-                            alt="upload file here"
-                          />
-                          <span style={{ color: "#2f3030", marginLeft: "7px" }}>
-                            Select File
-                          </span>{" "}
-                          <br />
-                          <input
-                            id="inputTag"
-                            onChange={toggleChange}
-                            style={{ display: "none" }}
-                            type="file"
-                          />
-                          <br />
-                        </label>
-                        {file && selectedFile != null ? (
+                    <div className="upload_cont_inner">
+                      <label htmlFor="inputTag" style={{ cursor: "pointer" }}>
+                        <img
+                          src={uploadimg}
+                          height="70"
+                          alt="upload file here"
+                        />
+                        <span style={{ color: "#2f3030", marginLeft: "7px" }}>
+                          Select File
+                        </span>{" "}
+                        <br />
+                        <input
+                          id="inputTag"
+                          onChange={toggleChange}
+                          style={{ display: "none" }}
+                          type="file"
+                        />
+                        <br />
+                      </label>
+                      {file && selectedFile != null ? (
                         <div className="file_container">
                           ${selectedFile.name}
                           <div className="close" onClick={close}>
@@ -256,17 +278,13 @@ function PostjobComponent() {
                       ) : (
                         ""
                       )}
-                      </div>
-                      
-
+                    </div>
                   </div>
                 </div>
 
-                  
-
                 <div class="row justify-content-end">
                   <div class="col-lg-10">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" onClick={handleSubmit} class="btn btn-primary">
                       Post Job
                     </button>
                   </div>

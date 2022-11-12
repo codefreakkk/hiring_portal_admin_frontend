@@ -29,26 +29,26 @@ function Inbox() {
               </NavLink>
 
               <div class="mail-list mt-4">
-                <NavLink to="/dashboard/inbox">
+                <NavLink to="/inbox">
                   <a href="javascript: void(0);" class="">
                     <i class="mdi mdi-email-outline me-2"></i> Inbox{" "}
                     {/* <span class="ms-1 float-end">(18)</span> */}
                   </a>
                 </NavLink>
 
-                <NavLink to="/dashboard/inbox/starred">
+                <NavLink to="/inbox/starred">
                   <a href="javascript: void(0);" style={{ marginTop: "-10px" }}>
                     <i class="mdi mdi-star-outline me-2"></i>Starred
                   </a>
                 </NavLink>
 
-                <NavLink to="/dashboard/inbox/sentmail">
+                <NavLink to="/inbox/sentmail">
                   <a href="javascript: void(0);" style={{ marginTop: "-10px" }}>
                     <i class="mdi mdi-email-check-outline me-2"></i>Sent Mail
                   </a>
                 </NavLink>
 
-                <NavLink to="/dashboard/inbox/trash">
+                <NavLink to="/inbox/trash">
                   <a href="javascript: void(0);" style={{ marginTop: "-10px" }}>
                     <i class="mdi mdi-trash-can-outline me-2"></i>Trash
                   </a>
