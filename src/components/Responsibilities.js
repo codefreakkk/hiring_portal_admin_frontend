@@ -1,34 +1,29 @@
 import React, { useState } from "react";
 import "../utilities/style.css";
 
-const Responsibilities = () => {
-  const [formValues, setFormValues] = useState([{ name: "" }]);
+const Responsibilities = ({resp, setresp}) => {
 
   let handleChange = (i, e) => {
-    let newFormValues = [...formValues];
-    newFormValues[i][e.target.name] = e.target.value;
-    setFormValues(newFormValues);
+    let newresp = [...resp];
+    newresp[i][e.target.name] = e.target.value;
+    setresp(newresp);
   };
 
   let addFormFields = () => {
-    setFormValues([...formValues, { name: "" }]);
+    setresp([...resp, { name: "" }]);
   };
 
   let removeFormFields = (i) => {
-    let newFormValues = [...formValues];
-    newFormValues.splice(i, 1);
-    setFormValues(newFormValues);
+    let newresp = [...resp];
+    newresp.splice(i, 1);
+    setresp(newresp);
   };
 
-  let handleSubmit = (event) => {
-    event.preventDefault();
-    alert(JSON.stringify(formValues));
-  };
 
   return (
     <>
       {/* <form  onSubmit={handleSubmit}> */}
-      {formValues.map((element, index) => (
+      {resp.map((element, index) => (
         <div class="row mb-4" key={index}>
           <label for="projectname" class="col-form-label col-lg-2">
             Responsibilities

@@ -1,35 +1,34 @@
 import React, {useState} from 'react';
 import "../utilities/style.css"
 
-function Qualification() {
-    const [formValues, setFormValues] = useState([{ name: "" }]);
+function Qualification({qualification, setqualification}) {
 
     let handleChange = (i, e) => {
-      let newFormValues = [...formValues];
-      newFormValues[i][e.target.name] = e.target.value;
-      setFormValues(newFormValues);
+      let newqualification = [...qualification];
+      newqualification[i][e.target.name] = e.target.value;
+      setqualification(newqualification);
     };
   
     let addFormFields = () => {
-      setFormValues([...formValues, { name: "" }]);
+      setqualification([...qualification, { name: "" }]);
     };
   
     let removeFormFields = (i) => {
-      let newFormValues = [...formValues];
-      newFormValues.splice(i, 1);
-      setFormValues(newFormValues);
+      let newqualification = [...qualification];
+      newqualification.splice(i, 1);
+      setqualification(newqualification);
     };
   
     let handleSubmit = (event) => {
       event.preventDefault();
-      alert(JSON.stringify(formValues));
+      alert(JSON.stringify(qualification));
     };
 
   return (
     <>
         <>
       {/* <form  onSubmit={handleSubmit}> */}
-      {formValues.map((element, index) => (
+      {qualification.map((element, index) => (
         <div class="row mb-4" key={index}>
           <label for="projectname" class="col-form-label col-lg-2">
             Qualification

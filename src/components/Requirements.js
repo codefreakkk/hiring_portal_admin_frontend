@@ -1,35 +1,34 @@
 import React, { useState } from "react";
 import "../utilities/style.css"
 
-function Requirements() {
-    const [formValues, setFormValues] = useState([{ name: "" }]);
+function Requirements({requirements, setrequirements}) {
 
     let handleChange = (i, e) => {
-      let newFormValues = [...formValues];
-      newFormValues[i][e.target.name] = e.target.value;
-      setFormValues(newFormValues);
+      let newrequirements = [...requirements];
+      newrequirements[i][e.target.name] = e.target.value;
+      setrequirements(newrequirements);
     };
   
     let addFormFields = () => {
-      setFormValues([...formValues, { name: "" }]);
+      setrequirements([...requirements, { name: "" }]);
     };
   
     let removeFormFields = (i) => {
-      let newFormValues = [...formValues];
-      newFormValues.splice(i, 1);
-      setFormValues(newFormValues);
+      let newrequirements = [...requirements];
+      newrequirements.splice(i, 1);
+      setrequirements(newrequirements);
     };
   
     let handleSubmit = (event) => {
       event.preventDefault();
-      alert(JSON.stringify(formValues));
+      alert(JSON.stringify(requirements));
     };
 
   return (
     <>
         <>
       {/* <form  onSubmit={handleSubmit}> */}
-      {formValues.map((element, index) => (
+      {requirements.map((element, index) => (
         <div class="row mb-4" key={index}>
           <label for="projectname" class="col-form-label col-lg-2">
             Requirements

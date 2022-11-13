@@ -1,35 +1,34 @@
 import React, {useState} from 'react';
 import "../utilities/style.css"
 
-function Experience() {
-    const [formValues, setFormValues] = useState([{ name: "" }]);
+function Experience({experience, setexperience}) {
 
     let handleChange = (i, e) => {
-      let newFormValues = [...formValues];
-      newFormValues[i][e.target.name] = e.target.value;
-      setFormValues(newFormValues);
+      let newexperience = [...experience];
+      newexperience[i][e.target.name] = e.target.value;
+      setexperience(newexperience);
     };
   
     let addFormFields = () => {
-      setFormValues([...formValues, { name: "" }]);
+      setexperience([...experience, { name: "" }]);
     };
   
     let removeFormFields = (i) => {
-      let newFormValues = [...formValues];
-      newFormValues.splice(i, 1);
-      setFormValues(newFormValues);
+      let newexperience = [...experience];
+      newexperience.splice(i, 1);
+      setexperience(newexperience);
     };
   
     let handleSubmit = (event) => {
       event.preventDefault();
-      alert(JSON.stringify(formValues));
+      alert(JSON.stringify(experience));
     };
 
   return (
     <>
         <>
       {/* <form  onSubmit={handleSubmit}> */}
-      {formValues.map((element, index) => (
+      {experience.map((element, index) => (
         <div class="row mb-4" key={index}>
           <label for="projectname" class="col-form-label col-lg-2">
           Skills & Experience

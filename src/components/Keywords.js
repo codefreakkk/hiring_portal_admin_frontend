@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import "../utilities/style.css"
 
 function Keywords({formValues, setFormValues}) {
-    
-
     let handleChange = (i, e) => {
       let newFormValues = [...formValues];
       newFormValues[i][e.target.name] = e.target.value;
