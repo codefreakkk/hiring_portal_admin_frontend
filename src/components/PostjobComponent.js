@@ -71,7 +71,7 @@ function PostjobComponent() {
         jobType,
         jobCat,
         vacancy,
-        experience,
+        jobexperience,
         closingDate,
         location,
         email,
@@ -181,14 +181,15 @@ function PostjobComponent() {
                         Job Type
                       </label>
                       <div class="col-lg-10">
-                        <input
-                          id="projectname"
-                          type="text"
+                      <select
+                          className="form-control"
                           value={jobType}
                           onChange={(e) => setJobType(e.target.value)}
-                          class="form-control"
-                          placeholder="Enter job type"
-                        />
+                        >
+                          <option value="1">Full Time</option>
+                          <option value="2">Part Time</option>
+                          <option value="3">Internship</option>
+                        </select>
                       </div>
                     </div>
 
