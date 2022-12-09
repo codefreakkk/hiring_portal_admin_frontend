@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import "../utilities/style.css";
 
 import { useEffect, useState } from "react";
@@ -85,17 +85,17 @@ function Panel() {
                             </span>
                           </NavLink> */}
 
-                          <NavLink to="/jobcategories">
+                          {/* <NavLink to="/jobcategories">
                             <span class="dropdown-item" key="t-default">
                               Job Categories
                             </span>
-                          </NavLink>
+                          </NavLink> */}
 
-                          <NavLink to="/closedjobs">
+                          {/* <NavLink to="/closedjobs">
                             <span class="dropdown-item" key="t-default">
                               Closed Jobs
                             </span>
-                          </NavLink>
+                          </NavLink> */}
                         </div>
                       </div>
                     </div>

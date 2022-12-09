@@ -1,7 +1,56 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import PortalSettingsHeader from "./PortalSettingsHeader";
-
+import axios from "axios";
 function EditProfile() {
+  const [oname, setOname] = useState();
+  const [oemail, setOeamil] = useState();
+  const [ocontact, setOcontact] = useState();
+  const [otype, setOtype] = useState();
+  const [empCount, setEmpCount] = useState();
+  const [olocation, setOlocation] = useState();
+
+  useEffect(() => {
+    axios
+      .post("http://localhost:8000/api/organization", {
+        oid: "6392d0a6ccde616cd53df754",
+      })
+      .then((response) => {
+        const data = response.data;
+        setOname(data.organizationName);
+        setOeamil(data.organizationEmail);
+        setOcontact(data.organizationContact);
+        setOtype(data.organizationType);
+        setEmpCount(data.organizationCount);
+        setOlocation(data.organizationLocation);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  function handleSubmit() {
+    axios
+      .put("http://localhost:8000/api/updateorganization", {
+        oid: "6392d0a6ccde616cd53df754",
+        oname,
+        oemail,
+        ocontact,
+        otype,
+        empCount,
+        olocation,
+      })
+      .then((response) => {
+        if (response.data.status == true) {
+          alert("Profile Updated");
+        } else {
+          alert("Profile Not updated !");
+          window.location.reload();
+        }
+      })
+      .catch((err) => {
+        alert("Some error occured !");
+        window.location.reload();
+      });
+  }
+
   return (
     <>
       <div class="email-rightbar mb-3">
@@ -19,7 +68,8 @@ function EditProfile() {
                   class="form-control"
                   id="formrow-firstname-input"
                   placeholder=""
-                  value={"Infosys"}
+                  onChange={(e) => setOname(e.target.value)}
+                  value={oname}
                 />
               </div>
               <div class="row">
@@ -31,8 +81,9 @@ function EditProfile() {
                     <input
                       type="email"
                       class="form-control"
+                      onChange={(e) => setOeamil(e.target.value)}
                       id="formrow-email-input"
-                      value={"infosys@gmail.com"}
+                      value={oemail}
                     />
                   </div>
                 </div>
@@ -42,7 +93,8 @@ function EditProfile() {
                       Organization Contact
                     </label>
                     <input
-                      value={"+91 8789384829"}
+                      onChange={(e) => setOcontact(e.target.value)}
+                      value={ocontact}
                       type="text"
                       class="form-control"
                       id="formrow-email-input"
@@ -58,10 +110,11 @@ function EditProfile() {
                       Organization Type
                     </label>
                     <input
+                      onChange={(e) => setOtype(e.target.value)}
                       type="text"
                       class="form-control"
                       id="formrow-inputCity"
-                      value={"Start Up"}
+                      value={otype}
                     />
                   </div>
                 </div>
@@ -71,10 +124,11 @@ function EditProfile() {
                       Employee Count
                     </label>
                     <input
+                      onChange={(e) => setEmpCount(e.target.value)}
                       type="text"
                       class="form-control"
                       id="formrow-inputCity"
-                      value={"2100+"}
+                      value={empCount}
                     />
                   </div>
                 </div>
@@ -86,9 +140,10 @@ function EditProfile() {
                     </label>
                     <input
                       type="text"
+                      onChange={(e) => setOlocation(e.target.value)}
                       class="form-control"
                       id="formrow-inputZip"
-                      value={"India"}
+                      value={olocation}
                     />
                   </div>
                 </div>
@@ -97,7 +152,11 @@ function EditProfile() {
           </div>
         </div>
         <div style={{ position: "absolute", right: "12px" }}>
-          <button type="submit" class="btn btn-primary w-md">
+          <button
+            type="button"
+            onClick={handleSubmit}
+            class="btn btn-primary w-md"
+          >
             Update
           </button>
         </div>

@@ -1,7 +1,19 @@
+import axios from "axios";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
 function Jobtable(data) {
+  function handleDelete() {
+    if(window.confirm("Do you want to delete this job ?")) {
+      const jobId = data.id;
+      axios.delete(`http://localhost:8000/api/deletejob/${jobId}`)
+      .then((response) => {
+        alert("Job deleted")
+        data.setDeleteToggle(true)
+      })
+      .catch("Some error occured")
+    }
+  }
   return (
     <>
       <tr>
@@ -22,7 +34,7 @@ function Jobtable(data) {
         <td>
           {data.status == "true" ? (
             <span class="badge text-bg-success">Active</span>
-          ) : ( 
+          ) : (
             <span class="badge text-bg-danger">Not Active</span>
           )}
         </td>
@@ -44,13 +56,11 @@ function Jobtable(data) {
             </li> */}
 
             <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-              <a
-                href=""
-                data-bs-toggle="modal"
-                class="btn btn-sm btn-soft-danger"
-              >
-                <i class="mdi mdi-delete-outline"></i>
-              </a>
+              <div data-bs-toggle="modal" class="btn btn-sm btn-soft-danger">
+                <div onClick={handleDelete}>
+                  <i class="mdi mdi-delete-outline"></i>
+                </div>
+              </div>
             </li>
           </ul>
         </td>

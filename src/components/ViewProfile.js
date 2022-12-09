@@ -11,7 +11,7 @@ function ViewProfile() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/api/organization", { oid: "12" })
+      .post("http://localhost:8000/api/organization", { oid: "6392d0a6ccde616cd53df754" })
       .then((response) => {
         setOrgdata(response.data);
         setLoader(true);
@@ -78,7 +78,7 @@ function ViewProfile() {
                     title={"Joined On"}
                     heading={orgData.joiningDate}
                   />
-                  <ViewProfileSub title={"Employee Count"} heading={"22"} />
+                  <ViewProfileSub title={"Employee Count"} heading={orgData.organizationCount} />
                   <ViewProfileSub
                     title={"Based In"}
                     heading={orgData.organizationLocation}

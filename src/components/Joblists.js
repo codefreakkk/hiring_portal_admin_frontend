@@ -5,26 +5,28 @@ import Loader from "./Loader";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { Oval } from "react-loader-spinner";
-import { socket } from "socket.io-client";
 import "../utilities/style.css";
 
 function Joblists() {
   const [jobData, setJobData] = useState([]);
   const [loader, setLoader] = useState(false);
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
   const [active, setActive] = useState("true");
   const [jtype, setJType] = useState("1");
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
+  const [deleteToggle, setDeleteToggle] = useState(false);
+  const [reloadToggle, setReloadToggle] = useState(false);
 
   useEffect(() => {
+    console.log("effect");
     axios
-      .get("http://localhost:8000/getalljobs")
+      .get("http://localhost:8000/api/getalljobs")
       .then((response) => {
         setJobData(response.data);
         setLoader(true);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [deleteToggle, reloadToggle]);
 
   // make get request for handling filter
   function handleFilterSubmit() {
@@ -34,8 +36,11 @@ function Joblists() {
       date,
       search
     })
-    .then((response) => console.log(response))
-    .catch((err) => console.log(err));
+    .then((response) => {
+      console.log(response.data);
+      setJobData(response.data)
+    })
+    .catch((err) => alert("Some error occured" + err));
   }
 
   return (
@@ -53,7 +58,7 @@ function Joblists() {
                     <NavLink to="/postjob">
                       <span class="btn btn-primary mr-6">Add New Job</span>
                     </NavLink>
-                    <span class="btn btn-light">
+                    <span class="btn btn-light" onClick={() => setReloadToggle(!reloadToggle)}>
                       <i class="mdi mdi-refresh"></i>
                     </span>
                   </div>
@@ -147,6 +152,7 @@ function Joblists() {
                               closingDate={data.closingDate}
                               location={data.location}
                               status={data.status}
+                              setDeleteToggle={setDeleteToggle}
                             />
                           );
                         })}

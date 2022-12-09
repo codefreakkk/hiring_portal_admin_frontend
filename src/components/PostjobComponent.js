@@ -21,10 +21,10 @@ function PostjobComponent() {
   const [requirements, setrequirements] = useState([{ name: "" }]);
   const [qualification, setqualification] = useState([{ name: "" }]);
   const [experience, setexperience] = useState([{ name: "" }]);
-  const [jobTitle, setJobTitle] = useState();
+  const [jobTitle, setJobTitle] = useState("");
   const [jobDesc, setJobDesc] = useState();
-  const [jobType, setJobType] = useState();
-  const [jobCat, setJobCat] = useState();
+  const [jobType, setJobType] = useState("1");
+  const [jobCat, setJobCat] = useState("value1");
   const [vacancy, setVacancy] = useState();
   const [jobexperience, setJobExperience] = useState();
   const [closingDate, setClosingDate] = useState();
@@ -85,13 +85,12 @@ function PostjobComponent() {
       },
     })
       .then((response) => {
-        console.log(response.data.status);
         setLoader(false);
         redirect();
       })
       .catch((err) => {
         setShowAlert(true);
-        setLoader(false);
+        setLoader(false)
         const errorCode = err.response.data.status;
         if (errorCode == 404)
           setAlertMsg("File not selected. Please select file");
