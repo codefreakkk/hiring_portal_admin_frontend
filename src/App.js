@@ -47,7 +47,7 @@ function App() {
           <Route path="/joblists" element={<Joblists />} />
           <Route path="/postjob" element={<PostjobComponent />} />
           <Route path="/jobcategories" element={<Jobcategories />} />
-          <Route path="/jobdetails/:id" element={<Jobdetails />} />
+          <Route exact path="/jobdetails/:id" element={<Jobdetails />} />
           <Route path="/closedjobs" element={<Closedjobs />} />
           <Route path="/jobapplicants" element={<Jobapplicants />} />
           <Route path="/applicantstatus" element={<Applicantstatus />} />

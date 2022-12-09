@@ -152,6 +152,7 @@ function Joblists() {
                               closingDate={data.closingDate}
                               location={data.location}
                               status={data.status}
+                              deleteToggle={deleteToggle}
                               setDeleteToggle={setDeleteToggle}
                             />
                           );

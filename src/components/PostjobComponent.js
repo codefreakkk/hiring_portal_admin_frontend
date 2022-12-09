@@ -66,6 +66,7 @@ function PostjobComponent() {
       url: "http://localhost:8000/api/postjob",
       headers: { "Content-Type": "multipart/form-data" },
       data: {
+        oid: "6392d0a6ccde616cd53df754",
         jobTitle,
         jobDesc,
         jobType,
@@ -222,7 +223,7 @@ function PostjobComponent() {
                           name="projectbudget"
                           type="text"
                           value={vacancy}
-                          onChange={() => setVacancy(vacancy)}
+                          onChange={(e) => setVacancy(e.target.value)}
                           placeholder="Enter job vacancy"
                           class="form-control"
                         />

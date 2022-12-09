@@ -9,7 +9,7 @@ function Jobtable(data) {
       axios.delete(`http://localhost:8000/api/deletejob/${jobId}`)
       .then((response) => {
         alert("Job deleted")
-        data.setDeleteToggle(true)
+        data.setDeleteToggle(!data.deleteToggle)
       })
       .catch("Some error occured")
     }
