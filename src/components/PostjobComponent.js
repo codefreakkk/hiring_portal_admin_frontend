@@ -57,6 +57,11 @@ function PostjobComponent() {
   // handle submit
   let handleSubmit = (event) => {
     event.preventDefault();
+    if (closingDate == undefined) {
+      setShowAlert(true);
+      setAlertMsg("Please choose closing date");
+      return;
+    }
     setLoader(true);
     const keywords = formValues;
     const formData = new FormData();
@@ -66,7 +71,10 @@ function PostjobComponent() {
       url: "http://localhost:8000/api/postjob",
       headers: { "Content-Type": "multipart/form-data" },
       data: {
+        // organization id
         oid: "6392d0a6ccde616cd53df754",
+        // organization name
+        oname: "Infosys",
         jobTitle,
         jobDesc,
         jobType,
@@ -86,12 +94,13 @@ function PostjobComponent() {
       },
     })
       .then((response) => {
+        console.log(response);
         setLoader(false);
         redirect();
       })
       .catch((err) => {
         setShowAlert(true);
-        setLoader(false)
+        setLoader(false);
         const errorCode = err.response.data.status;
         if (errorCode == 404)
           setAlertMsg("File not selected. Please select file");
@@ -100,7 +109,7 @@ function PostjobComponent() {
         else if (errorCode == -1)
           setAlertMsg("Job not posted. Some error occured");
         else if (errorCode == -2)
-          setAlertMsg("Job not posted. Only Images and PDF files are alowed");
+          setAlertMsg("Job not posted. Only Images are allowed");
       });
   };
 
@@ -181,7 +190,7 @@ function PostjobComponent() {
                         Job Type
                       </label>
                       <div class="col-lg-10">
-                      <select
+                        <select
                           className="form-control"
                           value={jobType}
                           onChange={(e) => setJobType(e.target.value)}
