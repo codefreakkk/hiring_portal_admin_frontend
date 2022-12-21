@@ -1,8 +1,35 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "./Loader";
 import MainHeading from "./MainHeading";
 
 function Scheduleinterview() {
+  const { id } = useParams();
+  const { jid } = useParams();
+  const [iname, setIname] = useState("");
+  const [date, setDate] = useState("");
+  const navigate = useNavigate();
+
+  function handleSubmit() {
+    if (date.length == 0 || iname.length == 0) {
+      alert("Please fill all details");
+      return;
+    }
+    axios
+      .post("http://localhost:8000/api/scheduleinterview", {
+        id: id,
+        jid: jid,
+        iname: iname,
+        date: date,
+        oname: localStorage.getItem("oname"),
+      })
+      .then((response) => {
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <>
       <Loader />
@@ -20,11 +47,13 @@ function Scheduleinterview() {
               </h5>
               <div class="mb-4">
                 <div class="mb-3">
-                  <label for="productname">Interview Name</label>
+                  <label for="productname">Interview Details</label>
                   <input
                     id="productname"
                     name="productname"
                     type="text"
+                    value={iname}
+                    onChange={(e) => setIname(e.target.value)}
                     class="form-control"
                     placeholder="Enter Interview Name"
                   />
@@ -36,6 +65,8 @@ function Scheduleinterview() {
                     id="productname"
                     name="productname"
                     type="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
                     class="form-control"
                     placeholder="Enter Interview Date"
                   />
@@ -43,7 +74,7 @@ function Scheduleinterview() {
               </div>
 
               {/* applicant details */}
-              <h5 class="mb-3 card-title flex-grow-1">
+              {/* <h5 class="mb-3 card-title flex-grow-1">
                 <span style={{ color: "#556ee6" }}>Applicant </span> Details
               </h5>
               <div class="table-responsive">
@@ -71,8 +102,10 @@ function Scheduleinterview() {
                     </tr>
                   </tbody>
                 </table>
-              </div>
-              <button className="btn btn-primary mt-3">Schedule</button>
+              </div> */}
+              <button className="btn btn-primary mt-3" onClick={handleSubmit}>
+                Schedule
+              </button>
             </div>
           </div>
         </div>

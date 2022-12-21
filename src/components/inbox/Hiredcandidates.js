@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Loader from '../Loader'
 import MainHeading from '../MainHeading';
-import {NavLink} from "react-router-dom";
-import logo from "../../images/profile.png";
-import Interviewstable from "../Interviewstable";
 import Hiredcandidatestable from './Hiredcandidatestable';
+import axios from 'axios';
 
 function Hiredcandidates() {
+  const [job, setJob] = useState([]);
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/hiredapplicants")
+    .then((response) => {
+      console.log(response);
+      setJob(response.data);
+      setLoader(false);
+    })
+    .catch((err) => console.log(err))
+  }, [])
+
   return (
     <>
     <Loader/>
@@ -23,7 +34,7 @@ function Hiredcandidates() {
               <div class="card-body border-bottom">
                 <div class="d-flex align-items-center">
                   <h5 class="mb-0 card-title flex-grow-1">
-                    <span style={{ color: "#556ee6" }}>109</span> Candidates Hired
+                    <span style={{ color: "#556ee6" }}>{loader == true? 0 : job.length}</span> Candidates Hired
                   </h5>
                   <div class="flex-shrink-0">
                     <span class="btn btn-light">
@@ -32,7 +43,7 @@ function Hiredcandidates() {
                   </div>
                 </div>
               </div>
-              <div class="card-body border-bottom">
+              {/* <div class="card-body border-bottom">
                 <div class="row g-3">
                   <div class="col-xxl-4 col-lg-6">
                     <input
@@ -43,23 +54,7 @@ function Hiredcandidates() {
                     />
                   </div>
                   <div class="col-xxl-2 col-lg-6">
-                    <select class="form-control select2">
-                      <option>Status</option>
-                      <option value="Active">Active</option>
-                      <option value="New">New</option>
-                      <option value="Close">Close</option>
-                    </select>
-                  </div>
-                  <div class="col-xxl-2 col-lg-4">
-                    <select class="form-control select2">
-                      <option>Select Type</option>
-                      <option value="1">Full Time</option>
-                      <option value="2">Part Time</option>
-                    </select>
-                  </div>
-                  <div class="col-xxl-2 col-lg-4">
-                    <div id="datepicker1">
-                      <input
+                  <input
                         type="date"
                         class="form-control"
                         placeholder="Select date"
@@ -68,6 +63,11 @@ function Hiredcandidates() {
                         data-date-container="#datepicker1"
                         data-provide="datepicker"
                       />
+                  </div>
+                  <div class="col-xxl-2 col-lg-4">
+                  </div>
+                  <div class="col-xxl-2 col-lg-4">
+                    <div id="datepicker1">
                     </div>
                   </div>
                   <div class="col-xxl-2 col-lg-4">
@@ -76,7 +76,7 @@ function Hiredcandidates() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table table-bordered align-middle nowrap">
@@ -84,19 +84,28 @@ function Hiredcandidates() {
                       <tr>
                         <th scope="col">Sr. No</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Company Name</th>
+                        <th scope="col">Job Name</th>
+                        <th scope="col">Applied Date</th>
                         <th scope="col">Email ID</th>
-                        <th scope="col">Contact Number</th>
-                        <th scope="col">View Resume</th>
                         <th scope="col">View</th>
-                        <th scope="col">Message</th>
-                        <th scope="col">Interview details</th>
                       </tr>
                     </thead>
                     <tbody>
-                        <Hiredcandidatestable/>
-                        <Hiredcandidatestable/>
-                      
+                      {loader == true ? <></>:
+                        job.map((data, index) => {
+                          return (
+                            <Hiredcandidatestable
+                              key={index}
+                              userName={data.userName}
+                              userEmail={data.userEmail}
+                              applied={data.appliedOn}
+                              uid={data.uid}
+                              index={index}
+                              jobTitle={data.jobTitle}
+                            />
+                          )
+                        })
+                      }
                     </tbody>
                   </table>
                 </div>

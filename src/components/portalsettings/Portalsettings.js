@@ -50,7 +50,7 @@ function PortalSettings() {
                   </a>
                 </NavLink> */}
 
-                <NavLink to="/portalsettings/manageaccounts">
+                {/* <NavLink to="/portalsettings/manageaccounts">
                   <a
                     style={{
                       marginTop: "-6px",
@@ -60,7 +60,7 @@ function PortalSettings() {
                     <i class="mdi mdi-email-check-outline me-2"></i>
                     <span style={{fontSize: '14px', fontWeight: '100px'}}>Manage Accounts</span>  
                   </a>
-                </NavLink>
+                </NavLink> */}
 
                 {/* <NavLink to="/portalsettings/hiring">
                   <a style={{ marginTop: "-10px" }} href="">
@@ -74,7 +74,7 @@ function PortalSettings() {
             {/* right side start */}
 
               <Routes>
-                <Route path="/manageaccounts" element={<ManageAccounts />} />
+                {/* <Route path="/manageaccounts" element={<ManageAccounts />} /> */}
                 {/* <Route path="/preferences" element={<Preferences />} /> */}
                 {/* <Route path="/hiring" element={<Hiring />} /> */}
                 <Route path="/" element={<EditProfile />} />

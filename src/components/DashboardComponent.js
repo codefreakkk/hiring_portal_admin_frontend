@@ -1,20 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import MainHeading from "./MainHeading";
 import HomeComponent1 from "./HomeComponent1";
 import MonthlyHiredComponent from "./MonthlyHiredComponent";
 import Activity from "./Activity";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
 import Loader from "./Loader";
 
 function DashboardComponent() {
+  const [jobopenings, setJobOpenings] = useState(0);
+  const [totalReg, setTotalReg] = useState(0);
+  const [hire, setHire] = useState(0);
+
+  useEffect(() => {
+    const oid = localStorage.getItem("cid");
+    axios
+      .post("http://localhost:8000/api/employeehired", { oid })
+      .then((res) => {
+        setHire(res.data.status);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    const oid = localStorage.getItem("cid");
+    axios
+      .post("http://localhost:8000/api/jobopenings", { oid })
+      .then((res) => {
+        setJobOpenings(res.data.status);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    const oid = localStorage.getItem("cid");
+    axios
+      .post("http://localhost:8000/api/totalreg", { oid })
+      .then((res) => {
+        setTotalReg(res.data.status);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div>
-      <Loader/>
+      <Loader />
       <div className="home_cont">
         {/* heading */}
 
-        <MainHeading heading={"Home"} path1={"Dashboard"} path2={"Home"}/>
+        <MainHeading heading={"Home"} path1={"Dashboard"} path2={"Home"} />
 
         {/* heading ends */}
 
@@ -35,10 +69,10 @@ function DashboardComponent() {
                   <div class="card-body">
                     <div class="d-flex">
                       <div class="flex-grow-1">
-                        <p class="text-muted fw-medium">
+                        <p class="text-mut  ed fw-medium">
                           Total Employee Recruited
                         </p>
-                        <h4 class="mb-0">1,235</h4>
+                        <h4 class="mb-0">{hire}</h4>
                       </div>
 
                       <div class="flex-shrink-0 align-self-center">
@@ -58,7 +92,7 @@ function DashboardComponent() {
                     <div class="d-flex">
                       <div class="flex-grow-1">
                         <p class="text-muted fw-medium">Job Openings</p>
-                        <h4 class="mb-0">22</h4>
+                        <h4 class="mb-0">{jobopenings}</h4>
                       </div>
 
                       <div class="flex-shrink-0 align-self-center">
@@ -78,7 +112,7 @@ function DashboardComponent() {
                     <div class="d-flex">
                       <div class="flex-grow-1">
                         <p class="text-muted fw-medium">Total Registration</p>
-                        <h4 class="mb-0">$16.2</h4>
+                        <h4 class="mb-0">{totalReg}</h4>
                       </div>
 
                       <div class="flex-shrink-0 align-self-center">

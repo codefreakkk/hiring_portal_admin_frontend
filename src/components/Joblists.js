@@ -18,29 +18,31 @@ function Joblists() {
   const [reloadToggle, setReloadToggle] = useState(false);
 
   useEffect(() => {
-    console.log("effect");
+    const oid = localStorage.getItem("cid");
     axios
-      .get("http://localhost:8000/api/getalljobs")
+      .post("http://localhost:8000/api/getalljobs", { oid })
       .then((response) => {
         setJobData(response.data);
         setLoader(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert("Some error, occured"));
   }, [deleteToggle, reloadToggle]);
 
   // make get request for handling filter
   function handleFilterSubmit() {
-    axios.post("http://localhost:8000/api/filterjobs", {
-      active,
-      jtype,
-      date,
-      search
-    })
-    .then((response) => {
-      console.log(response.data);
-      setJobData(response.data)
-    })
-    .catch((err) => alert("Some error occured" + err));
+    const oid = localStorage.getItem("cid");
+    axios
+      .post("http://localhost:8000/api/filterjobs", {
+        active,
+        jtype,
+        date,
+        search,
+        oid,
+      })
+      .then((response) => {
+        setJobData(response.data);
+      })
+      .catch((err) => alert("Some error occured"));
   }
 
   return (
@@ -58,7 +60,10 @@ function Joblists() {
                     <NavLink to="/postjob">
                       <span class="btn btn-primary mr-6">Add New Job</span>
                     </NavLink>
-                    <span class="btn btn-light" onClick={() => setReloadToggle(!reloadToggle)}>
+                    <span
+                      class="btn btn-light"
+                      onClick={() => setReloadToggle(!reloadToggle)}
+                    >
                       <i class="mdi mdi-refresh"></i>
                     </span>
                   </div>
@@ -77,13 +82,21 @@ function Joblists() {
                     />
                   </div>
                   <div class="col-xxl-2 col-lg-6">
-                    <select class="form-control select2" value={active} onChange={(e) => setActive(e.target.value)}>
+                    <select
+                      class="form-control select2"
+                      value={active}
+                      onChange={(e) => setActive(e.target.value)}
+                    >
                       <option value="true">Active</option>
                       <option value="false">Not Active</option>
                     </select>
                   </div>
                   <div class="col-xxl-2 col-lg-4">
-                    <select class="form-control select2" value={jtype} onChange={(e) => setJType(e.target.value)} >
+                    <select
+                      class="form-control select2"
+                      value={jtype}
+                      onChange={(e) => setJType(e.target.value)}
+                    >
                       <option value="1">Full Time</option>
                       <option value="2">Part Time</option>
                       <option value="3">Internship</option>
@@ -105,7 +118,11 @@ function Joblists() {
                     </div>
                   </div>
                   <div class="col-xxl-2 col-lg-4">
-                    <button type="button" class="btn btn-soft-secondary w-100" onClick={handleFilterSubmit}>
+                    <button
+                      type="button"
+                      class="btn btn-soft-secondary w-100"
+                      onClick={handleFilterSubmit}
+                    >
                       <i class="mdi mdi-filter-outline align-middle"></i> Filter
                     </button>
                   </div>

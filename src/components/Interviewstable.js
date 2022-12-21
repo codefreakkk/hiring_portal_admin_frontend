@@ -1,7 +1,59 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
-function Interviewstable({index, uid, jobTitle, userName, userEmail, applied}) {
+function Interviewstable({
+  index,
+  uid,
+  jid,
+  jobTitle,
+  userName,
+  userEmail,
+  applied,
+}) {
+  // handle hire
+  function handleHire() {
+    const cid = localStorage.getItem("cid");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    axios
+      .put("http://localhost:8000/api/hireapplicant", { jid, uid, cid }, config)
+      .then((response) => {
+        if (response.data.status == true) {
+          alert("Candidate Hired");
+          window.location.reload();
+        }
+      })
+      .catch((err) => alert("Some error occured"));
+  }
+
+  // handle reject
+  function handleReject() {
+    // need to work on this after finishing dinner
+    const cid = localStorage.getItem("cid");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    axios
+      .post(
+        "http://localhost:8000/api/rejectapplicant",
+        { jid, uid, cid },
+        config
+      )
+      .then((response) => {
+        alert("Applicant rejeted");
+        window.location.reload();
+      })
+      .catch((err) => alert("Some error occured"));
+  }
+
   return (
     <>
       <tr>
@@ -32,20 +84,24 @@ function Interviewstable({index, uid, jobTitle, userName, userEmail, applied}) {
             cursor: "pointer",
           }}
         >
-          <NavLink to="interviewdetails">
+          <NavLink to={`interviewdetails/${uid}/job/${jid}`}>
             <span class="badge bg-success font-size-10">View Details</span>
           </NavLink>
         </td>
         <td>
-          <NavLink to="scheduleinterview">
+          <NavLink to={`scheduleinterview/${uid}/job/${jid}`}>
             <span class="badge bg-warning font-size-10">Schedule</span>
           </NavLink>
         </td>
         <td>
-          <button className="btn btn-primary">Hire</button>
+          <button className="btn btn-primary" onClick={handleHire}>
+            Hire
+          </button>
         </td>
         <td>
-          <button className="btn btn-danger">Reject</button>
+          <button className="btn btn-danger" onClick={handleReject}>
+            Reject
+          </button>
         </td>
       </tr>
     </>

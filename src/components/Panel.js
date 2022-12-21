@@ -38,11 +38,11 @@ function Panel() {
                       </span>
                     </NavLink> */}
 
-                    <NavLink to="/hiringdetails">
+                    {/* <NavLink to="/hiringdetails">
                       <span class="dropdown-item" key="t-default">
                         Hiring Details
                       </span>
-                    </NavLink>
+                    </NavLink> */}
                   </div>
                 </li>
 

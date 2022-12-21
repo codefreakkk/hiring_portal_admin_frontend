@@ -66,13 +66,13 @@ function App() {
           <Route path="/interviews" element={<Interviews />} />
           <Route path="/applicantstatus/assigntask" element={<Assigntask />} />
           <Route path="/applicantstatus/view" element={<View />} />
-          <Route path="/jobapplicants/view/*" element={<View />} />
-          <Route path="/hiredcandidates/view" element={<View />} />
-          <Route path="/interviews/view/*" element={<View />} />
+          <Route path="/jobapplicants/view/:id" element={<View />} />
+          <Route path="/hiredcandidates/view/:id" element={<View />} />
+          <Route path="/interviews/view/:id" element={<View />} />
           <Route path="/viewprofile" element={<ViewProfile />} />
           <Route path="/portalsettings" element={<Portalsettings />} />
           <Route
-            path="/interviews/interviewdetails"
+            path="/interviews/interviewdetails/:id/job/:jid"
             element={<Interviewdetails />}
           />
           <Route
@@ -80,7 +80,7 @@ function App() {
             element={<Hiredcandidatesinterview />}
           />
           <Route
-            path="/interviews/scheduleinterview"
+            path="/interviews/scheduleinterview/:id/job/:jid"
             element={<Scheduleinterview />}
           />
           <Route

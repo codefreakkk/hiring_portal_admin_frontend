@@ -92,7 +92,7 @@ function Jobdetails() {
                           <td>25 June, 2022</td>
                         </tr> */}
                         <tr>
-                          <th scope="row">Job Closing Date</th>
+                          <th scope="row">Job Posting Date</th>
                           <td>{jobData.closingDate}</td>
                         </tr>
                       </tbody>

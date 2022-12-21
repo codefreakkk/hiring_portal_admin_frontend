@@ -35,7 +35,6 @@ function Jobapplicantstable({
   }
 
   function handleDelete() {
-    alert("delete");
     const cid = localStorage.getItem("cid");
     const token = localStorage.getItem("token");
     const config = {
@@ -50,9 +49,10 @@ function Jobapplicantstable({
         config
       )
       .then((response) => {
-        console.log(response);
+        alert("Applicant rejeted")
+        window.location.reload()
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert("Some error occured"));
   }
 
   return (
