@@ -1,18 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function Interviewstable() {
+function Interviewstable({index, uid, jobTitle, userName, userEmail, applied}) {
   return (
     <>
       <tr>
-        <th scope="row">10</th>
-        <td>Marketing Director</td>
-        <td>Web Technology pvt.ltd</td>
-        <td>02-12-2022</td>
-        <td>h@gmail.com</td>
-        <td>7447457454</td>
+        <th scope="row">{index + 1}</th>
+        <td>{userName}</td>
+        <td>{jobTitle}</td>
+        <td>{applied}</td>
+        <td>{userEmail}</td>
         <td>
-          <NavLink to="view">
+          <NavLink to={`view/${uid}`}>
             <ul class="list-unstyled hstack gap-1 mb-0">
               <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
                 <span
@@ -25,7 +24,6 @@ function Interviewstable() {
             </ul>
           </NavLink>
         </td>
-        <td>Message</td>
         <td
           style={{
             display: "flex",
@@ -40,7 +38,7 @@ function Interviewstable() {
         </td>
         <td>
           <NavLink to="scheduleinterview">
-          <span class="badge bg-warning font-size-10">Schedule</span>
+            <span class="badge bg-warning font-size-10">Schedule</span>
           </NavLink>
         </td>
         <td>

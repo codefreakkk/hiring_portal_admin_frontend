@@ -1,13 +1,40 @@
-import React from 'react'
-import Interviewstable from './Interviewstable';
+import React, { useEffect, useState } from "react";
+import Interviewstable from "./Interviewstable";
 import Loader from "./Loader";
 import MainHeading from "./MainHeading";
+import axios from "axios";
 
 function Interviews() {
+  const [applicants, setApplicants] = useState();
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    const cid = localStorage.getItem("cid");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+    axios
+      .post(
+        "http://localhost:8000/api/interview",
+        {
+          cid: cid,
+        },
+        config
+      )
+      .then((response) => {
+        setApplicants(response.data);
+        setLoader(false);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
-        <Loader/>
-        <div className='interviews_main'>
+      <Loader />
+      <div className="interviews_main">
         <MainHeading
           heading={"Interviews"}
           path1={"Candidate"}
@@ -40,21 +67,6 @@ function Interviews() {
                     />
                   </div>
                   <div class="col-xxl-2 col-lg-6">
-                    <select class="form-control select2">
-                      <option>Status</option>
-                      <option value="Active">Active</option>
-                      <option value="New">New</option>
-                      <option value="Close">Close</option>
-                    </select>
-                  </div>
-                  <div class="col-xxl-2 col-lg-4">
-                    <select class="form-control select2">
-                      <option>Select Type</option>
-                      <option value="1">Full Time</option>
-                      <option value="2">Part Time</option>
-                    </select>
-                  </div>
-                  <div class="col-xxl-2 col-lg-4">
                     <div id="datepicker1">
                       <input
                         type="date"
@@ -67,6 +79,14 @@ function Interviews() {
                       />
                     </div>
                   </div>
+                  <div class="col-xxl-2 col-lg-4">
+                    {/* <select class="form-control select2">
+                      <option>Select Type</option>
+                      <option value="1">Full Time</option>
+                      <option value="2">Part Time</option>
+                    </select> */}
+                  </div>
+                  <div class="col-xxl-2 col-lg-4"></div>
                   <div class="col-xxl-2 col-lg-4">
                     <button type="button" class="btn btn-soft-secondary w-100">
                       <i class="mdi mdi-filter-outline align-middle"></i> Filter
@@ -81,12 +101,10 @@ function Interviews() {
                       <tr>
                         <th scope="col">Sr. No</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Company Name</th>
+                        <th scope="col">Job Name</th>
+                        <th scope="col">Applied Date</th>
                         <th scope="col">Email ID</th>
-                        <th scope="col">Contact Number</th>
-                        <th scope="col">View Resume</th>
-                        <th scope="col">View</th>
-                        <th scope="col">Message</th>
+                        <th scope="col">Full Profile</th>
                         <th scope="col">Interview details</th>
                         <th scope="col">Interview</th>
                         <th scope="col">Hire</th>
@@ -94,9 +112,19 @@ function Interviews() {
                       </tr>
                     </thead>
                     <tbody>
-                      <Interviewstable/>
-                      <Interviewstable/>
-                      
+                      {loader == true ? <></> : applicants.map((data, index) => {
+                        return (
+                          <Interviewstable 
+                            key={index}
+                            index={index}
+                            userName={data.userName}
+                            jobTitle={data.jobTitle}
+                            userEmail={data.userEmail}
+                            uid={data.uid}
+                            applied={data.appliedOn}
+                          />
+                        )
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -104,10 +132,9 @@ function Interviews() {
             </div>
           </div>
         </div>
-
-        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default Interviews
+export default Interviews;

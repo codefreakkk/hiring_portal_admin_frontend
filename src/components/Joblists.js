@@ -133,7 +133,7 @@ function Joblists() {
                           <th scope="col">Location</th>
                           <th scope="col">Experience</th>
                           <th scope="col">Type</th>
-                          <th scope="col">Last Date</th>
+                          <th scope="col">Posted Date</th>
                           <th scope="col">Status</th>
                           <th scope="col">Action</th>
                         </tr>

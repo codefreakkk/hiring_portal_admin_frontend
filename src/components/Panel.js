@@ -1,6 +1,5 @@
-  import React from "react";
+import React from "react";
 import "../utilities/style.css";
-
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -105,7 +104,7 @@ function Panel() {
                 {/* section 3 */}
                 <li
                   class="nav-item dropdown"
-                  style={{ marginRight: "20px", cursor: 'pointer' }}
+                  style={{ marginRight: "20px", cursor: "pointer" }}
                 >
                   <a
                     class="nav-link dropdown-toggle arrow-none"
@@ -125,11 +124,11 @@ function Panel() {
                       </span>
                     </NavLink>
 
-                    <NavLink to="/applicantstatus">
+                    {/* <NavLink to="/applicantstatus">
                       <span class="dropdown-item" key="t-default">
                         Applicants Status
                       </span>
-                    </NavLink>
+                    </NavLink> */}
 
                     <NavLink to="/interviews">
                       <span class="dropdown-item" key="t-default">
@@ -143,11 +142,11 @@ function Panel() {
                       </span>
                     </NavLink> */}
 
-                    <NavLink to="/inbox">
+                    {/* <NavLink to="/inbox">
                       <span class="dropdown-item" key="t-default">
                         Inbox
                       </span>
-                    </NavLink>
+                    </NavLink> */}
 
                     <NavLink to="/hiredcandidates">
                       <span class="dropdown-item" key="t-default">
@@ -171,15 +170,14 @@ function Panel() {
                   </a>
                   <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
                     <NavLink to="/viewprofile">
-
-                    <span class="dropdown-item" key="t-default">
-                      View Profile
-                    </span>
+                      <span class="dropdown-item" key="t-default">
+                        View Profile
+                      </span>
                     </NavLink>
                     <NavLink to="/portalsettings">
-                    <span class="dropdown-item" key="t-default">
-                      Portal Settings
-                    </span>
+                      <span class="dropdown-item" key="t-default">
+                        Portal Settings
+                      </span>
                     </NavLink>
                   </div>
                 </li>

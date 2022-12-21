@@ -12,7 +12,7 @@ function EditProfile() {
   useEffect(() => {
     axios
       .post("http://localhost:8000/api/organization", {
-        oid: "6392d0a6ccde616cd53df754",
+        oid: localStorage.getItem("cid"),
       })
       .then((response) => {
         const data = response.data;
@@ -29,7 +29,7 @@ function EditProfile() {
   function handleSubmit() {
     axios
       .put("http://localhost:8000/api/updateorganization", {
-        oid: "6392d0a6ccde616cd53df754",
+        oid: localStorage.getItem("cid"),
         oname,
         oemail,
         ocontact,

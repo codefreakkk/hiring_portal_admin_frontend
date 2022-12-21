@@ -36,7 +36,7 @@ function PortalSettings() {
                   </a>
                 </NavLink>
 
-                <NavLink to="/portalsettings/preferences">
+                {/* <NavLink to="/portalsettings/preferences">
                   <a
                     href=""
                     style={{
@@ -48,13 +48,12 @@ function PortalSettings() {
                     <i class="mdi mdi-star-outline me-2"></i>
                     <span style={{fontSize: '14px', fontWeight: '100px'}}>Preferences</span>
                   </a>
-                </NavLink>
+                </NavLink> */}
 
                 <NavLink to="/portalsettings/manageaccounts">
                   <a
                     style={{
                       marginTop: "-6px",
-                      borderBottom: ".4px solid #d9d2d2",
                     }}
                     href=""
                   >
@@ -63,12 +62,12 @@ function PortalSettings() {
                   </a>
                 </NavLink>
 
-                <NavLink to="/portalsettings/hiring">
+                {/* <NavLink to="/portalsettings/hiring">
                   <a style={{ marginTop: "-10px" }} href="">
                     <i class="mdi mdi-trash-can-outline me-2"></i>
                     <span style={{fontSize: '14px', fontWeight: '500px'}}>Hiring</span>
                   </a>
-                </NavLink>
+                </NavLink> */}
               </div>
             </div>
 
@@ -76,8 +75,8 @@ function PortalSettings() {
 
               <Routes>
                 <Route path="/manageaccounts" element={<ManageAccounts />} />
-                <Route path="/preferences" element={<Preferences />} />
-                <Route path="/hiring" element={<Hiring />} />
+                {/* <Route path="/preferences" element={<Preferences />} /> */}
+                {/* <Route path="/hiring" element={<Hiring />} /> */}
                 <Route path="/" element={<EditProfile />} />
               </Routes>
 

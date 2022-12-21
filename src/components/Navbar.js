@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/css/app.min.css";
 import "../assets/css/bootstrap.min.css";
 import "../assets/css/icons.min.css";
 import "../utilities/style.css";
 import logo from "../images/app.png";
-import { useState } from "react";
 import Panel from "./Panel";
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const [user, setUser] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("companytoken");
+    const cid = localStorage.getItem("cid");
+    const oname = localStorage.getItem("oname");
+    if (token != null && cid != null && oname != null) {
+      setLoggedIn(true);
+    } else{
+      setLoggedIn(false);
+    } 
+  }, []);
+
   function toggleUser() {
     setUser(!user);
   }
 
-  return (
+  return loggedIn == true ? (
     <div>
       <header id="page-topbar">
         <div class="navbar-header">
@@ -55,61 +67,6 @@ function Navbar() {
           </div>
 
           <div class="d-flex" style={{ paddingRight: "60px" }}>
-            <div class="">
-              <button
-                type="button"
-                class="header-item noti-icon dark_bg"
-                style={{ marginRight: "7px", paddingTop: "6px" }}
-              >
-                <i class="bx bx-customize" style={{ color: "white" }}></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <div class="px-lg-2">
-                  <div class="row g-0">
-                    <div class="col">
-                      <a class="dropdown-icon-item" href="#">
-                        {/* <img src="assets/images/brands/github.png" alt="Github"> */}
-                        <span>GitHub</span>
-                      </a>
-                    </div>
-                    <div class="col">
-                      <a class="dropdown-icon-item" href="#">
-                        {/* <img src="assets/images/brands/bitbucket.png" alt="bitbucket"> */}
-                        <span>Bitbucket</span>
-                      </a>
-                    </div>
-                    <div class="col">
-                      <a class="dropdown-icon-item" href="#">
-                        {/* <img src="assets/images/brands/dribbble.png" alt="dribbble"> */}
-                        <span>Dribbble</span>
-                      </a>
-                    </div>
-                  </div>
-
-                  <div class="row no-gutters">
-                    <div class="col">
-                      <a class="dropdown-icon-item" href="#">
-                        {/* <img src="assets/images/brands/dropbox.png" alt="dropbox"> */}
-                        <span>Dropbox</span>
-                      </a>
-                    </div>
-                    <div class="col">
-                      <a class="dropdown-icon-item" href="#">
-                        {/* <img src="assets/images/brands/mail_chimp.png" alt="mail_chimp"> */}
-                        <span>Mail Chimp</span>
-                      </a>
-                    </div>
-                    <div class="col">
-                      <a class="dropdown-icon-item" href="#">
-                        {/* <img src="assets/images/brands/slack.png" alt="slack"> */}
-                        <span>Slack</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* <!-- user starts henry --> */}
             <div class="dropdown d-inline-block">
               <button
@@ -123,7 +80,7 @@ function Navbar() {
                   class="d-none d-xl-inline-block ms-1"
                   style={{ fontSize: "14px", color: "white" }}
                 >
-                  Henry
+                  {localStorage.getItem("oname")}
                 </span>
                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
               </button>
@@ -145,14 +102,19 @@ function Navbar() {
                     <span key="t-settings">Settings</span>
                   </a>
                 </NavLink>
-                <a class="dropdown-item" href="#">
+                {/* <a class="dropdown-item" href="#">
                   <i class="bx bx-lock-open font-size-16 align-middle me-1"></i>{" "}
                   <span key="t-lock-screen">Lock screen</span>
-                </a>
+                </a> */}
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-danger" href="#">
+                <a class="dropdown-item text-danger">
                   <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>{" "}
-                  <span key="t-logout">Logout</span>
+                  <span key="t-logout" style={{cursor: "pointer"}} onClick={() => {
+                    localStorage.removeItem("companytoken")
+                    localStorage.removeItem("oname")
+                    localStorage.removeItem("cid")
+                    window.location.reload()
+                  }}>Logout</span>
                 </a>
               </div>
             </div>
@@ -165,6 +127,8 @@ function Navbar() {
       {/* panel */}
       <Panel />
     </div>
+  ) : (
+    <></>
   );
 }
 

@@ -1,10 +1,10 @@
-import { Routes, BrowserRouter, Route} from "react-router-dom";
+import { Routes, BrowserRouter, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import "./assets/css/app.min.css";
 import "./assets/css/bootstrap.min.css";
 import "./assets/css/icons.min.css";
 import "./utilities/style.css";
-import Footer from "./components/Footer";
 import DashboardComponent from "./components/DashboardComponent";
 import ActivityComponent from "./components/ActivityComponent";
 import HiringDetailsComponent from "./components/HiringDetailsComponent";
@@ -23,23 +23,35 @@ import Interviewdetails from "./components/Interviewdetails";
 import Scheduleinterview from "./components/Scheduleinterview";
 import Chats from "./components/Chats";
 import Inbox from "./components/inbox/Inbox";
-import Inboxmain from "./components/inbox/Inboxmain";
 import Readmail from "./components/inbox/Readmail";
 import Hiredcandidates from "./components/inbox/Hiredcandidates";
 import Hiredcandidatesinterview from "./components/inbox/Hiredcandidatesinterview";
 import ViewProfile from "./components/ViewProfile";
 import Portalsettings from "./components/portalsettings/Portalsettings";
-import Lockscreen from "./components/Lockscreen";
 import Login from "./components/Login";
 
-
 function App() {
-  return (
+  const [loggedin, setLoggedIn] = useState(false);
+  
+  useEffect(() => {
+    const token = localStorage.getItem("companytoken");
+    const cid = localStorage.getItem("cid");
+    const oname = localStorage.getItem("oname");
+    if (token != null && cid != null && oname != null) {
+      setLoggedIn(true);
+      console.log("loggedinin");
+    } else {
+      setLoggedIn(false);
+      console.log("not logged in");
+    }
+  }, []);
+
+  return loggedin == true ? (
     <>
       {/* router */}
       <BrowserRouter>
-      {/* <Login/> */}
-      <Navbar />
+        {/* <Login/> */}
+        <Navbar />
         <Routes>
           <Route path="/hiredcandidates" element={<Hiredcandidates />} />
           <Route path="/activity" element={<ActivityComponent />} />
@@ -54,9 +66,9 @@ function App() {
           <Route path="/interviews" element={<Interviews />} />
           <Route path="/applicantstatus/assigntask" element={<Assigntask />} />
           <Route path="/applicantstatus/view" element={<View />} />
-          <Route path="/jobapplicants/view" element={<View />} />
+          <Route path="/jobapplicants/view/*" element={<View />} />
           <Route path="/hiredcandidates/view" element={<View />} />
-          <Route path="/interviews/view" element={<View />} />
+          <Route path="/interviews/view/*" element={<View />} />
           <Route path="/viewprofile" element={<ViewProfile />} />
           <Route path="/portalsettings" element={<Portalsettings />} />
           <Route
@@ -83,11 +95,20 @@ function App() {
           <Route path="/portalsettings/*" element={<Portalsettings />} />
           <Route path="/" element={<DashboardComponent />} />
         </Routes>
-        
       </BrowserRouter>
-      
-      {/* footer */}
     </>
+  ) : (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "90vh",
+      }}
+    >
+      <Login />
+    </div>
   );
 }
 

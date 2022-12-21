@@ -20,7 +20,7 @@ function Jobtable(data) {
         {/* <th scope="row">{data.id}</th> */}
         <td>{data.jobTitle}</td>
         <td>{data.location}</td>
-        <td>{data.jobexperience}</td>
+        <td>{data.jobexperience} Years</td>
         <td>
           <span class="badge badge-soft-warning">
             {data.jobType == "1"

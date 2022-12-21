@@ -4,6 +4,7 @@ import MainHeading from "./MainHeading";
 import logo from "../images/profile.png";
 import Jobvacancy from "./Jobvacancy";
 import { NavLink } from "react-router-dom";
+import CheckLoggedIn from "./CheckLoggedIn"
 
 function HiringDetailsComponent() {
   return (

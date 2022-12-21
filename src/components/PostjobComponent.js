@@ -24,7 +24,7 @@ function PostjobComponent() {
   const [jobTitle, setJobTitle] = useState("");
   const [jobDesc, setJobDesc] = useState();
   const [jobType, setJobType] = useState("1");
-  const [jobCat, setJobCat] = useState("value1");
+  const [jobCat, setJobCat] = useState("fullstack");
   const [vacancy, setVacancy] = useState();
   const [jobexperience, setJobExperience] = useState();
   const [closingDate, setClosingDate] = useState();
@@ -71,10 +71,8 @@ function PostjobComponent() {
       url: "http://localhost:8000/api/postjob",
       headers: { "Content-Type": "multipart/form-data" },
       data: {
-        // organization id
-        oid: "6392d0a6ccde616cd53df754",
-        // organization name
-        oname: "Infosys",
+        oid: localStorage.getItem("cid"),
+        oname: localStorage.getItem("oname"),
         jobTitle,
         jobDesc,
         jobType,
@@ -212,9 +210,9 @@ function PostjobComponent() {
                           value={jobCat}
                           onChange={(e) => setJobCat(e.target.value)}
                         >
-                          <option value="value1">value1</option>
-                          <option value="value2">value2</option>
-                          <option value="value3">value3</option>
+                          <option value="fullstack">Full Stack</option>
+                          <option value="backend">Backend</option>
+                          <option value="frontend">Frontend</option>
                         </select>
                       </div>
                     </div>
@@ -230,7 +228,7 @@ function PostjobComponent() {
                         <input
                           id="projectbudget"
                           name="projectbudget"
-                          type="text"
+                          type="number"
                           value={vacancy}
                           onChange={(e) => setVacancy(e.target.value)}
                           placeholder="Enter job vacancy"
@@ -250,7 +248,7 @@ function PostjobComponent() {
                         <input
                           id="projectbudget"
                           name="projectbudget"
-                          type="text"
+                          type="number"
                           value={jobexperience}
                           onChange={(e) => setJobExperience(e.target.value)}
                           placeholder="Enter job experience"
@@ -261,7 +259,7 @@ function PostjobComponent() {
 
                     <div class="row mb-4">
                       <label class="col-form-label col-lg-2">
-                        Closing Date
+                        Posting Date
                       </label>
                       <div class="col-lg-10">
                         <div

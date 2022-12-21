@@ -11,7 +11,7 @@ function ViewProfile() {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8000/api/organization", { oid: "6392d0a6ccde616cd53df754" })
+      .post("http://localhost:8000/api/organization", { oid: localStorage.getItem("cid") })
       .then((response) => {
         setOrgdata(response.data);
         setLoader(true);
